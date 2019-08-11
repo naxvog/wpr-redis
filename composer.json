@@ -1,0 +1,14 @@
+{
+    "name": "naxvog/wpr-redis",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Oliver Zieschang",
+            "email": "naxvog@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "predis/predis": "^1.1",
+        "yahnis-elsts/plugin-update-checker": "^4.7"
+    }
+}

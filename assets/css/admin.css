@@ -1,0 +1,12 @@
+.pill {
+	border-radius: 5px;
+	background-color: #000;
+	padding: 2px 3px;
+	color: #fff;
+}
+.pill.pill-active {
+	background-color: darkgreen;
+}
+.pill.pill-inactive {
+	background-color: darkred;
+}
