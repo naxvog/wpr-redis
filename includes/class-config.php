@@ -90,14 +90,12 @@ class Config {
 	 * @return void
 	 */
 	public function enqueue_resources() {
-		$handle       = 'wpr-redis-admin-style';
-		$partial_path = '/assets/css/admin.css';
-		$version      = dechex( filemtime( WPR_REDIS_PATH . $partial_path ) );
+		$handle = 'wpr-redis-admin-style';
 		wp_register_style(
 			$handle,
-			WPR_REDIS_URL . $partial_path,
+			WPR_REDIS_URL . 'assets/css/admin.css',
 			[],
-			$version
+			WPR_Redis::meta( 'Version' )
 		);
 		wp_enqueue_style( $handle );
 	}
@@ -323,15 +321,15 @@ class Config {
 		foreach ( $keys as $key ) {
 			$repl[ "###$key###" ] = get_option( $key );
 		}
+		$filesystem = rocket_direct_filesystem();
+
 		$tpl_path = WPR_REDIS_INCLUDE_PATH . '/config-template.php';
-		$template = file_get_contents( $tpl_path );
+		$template = $filesystem->get_contents( $tpl_path );
 		$contents = strtr( $template, $repl );
 
 		$path = self::path();
 		wp_mkdir_p( dirname( $path ) );
-		$fh = fopen( $path, 'w+' );
-		fwrite( $fh, $contents );
-		fclose( $fh );
+		$filesystem->put_contents( $path, $contents );
 
 		rocket_generate_advanced_cache_file();
 	}

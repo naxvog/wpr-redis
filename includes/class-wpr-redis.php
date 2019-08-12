@@ -1,7 +1,7 @@
 <?php
 /**
  * @author naxvog <naxvog@users.noreply.github.com>
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 namespace WPR_Redis;
@@ -24,6 +24,36 @@ class WPR_Redis {
 			[ WPR_Redis::class, 'deactivation' ]
 		);
 		add_action( 'plugins_loaded', [ $this, 'init' ], 11 );
+	}
+
+	/**
+	 * Retrieves plugin metadata
+	 *
+	 * @since 1.0.1
+	 * @param string $key
+	 * @return string
+	 */
+	public static function meta( $key ) {
+		static $metadata = null;
+		if ( null === $metadata ) {
+			$metadata = get_file_data(
+				WPR_REDIS_FILE,
+				array(
+					'Name'        => 'Plugin Name',
+					'PluginURI'   => 'Plugin URI',
+					'Version'     => 'Version',
+					'Description' => 'Description',
+					'Author'      => 'Author',
+					'AuthorURI'   => 'Author URI',
+					'TextDomain'  => 'Text Domain',
+					'DomainPath'  => 'Domain Path',
+					'Network'     => 'Network',
+					'RequiresWP'  => 'Requires at least',
+					'RequiresPHP' => 'Requires PHP',
+				)
+			);
+		}
+		return isset( $metadata[ $key ] ) ? $metadata[ $key ] : null;
 	}
 
 	/**
@@ -86,8 +116,9 @@ class WPR_Redis {
 	 */
 	public static function is_integrated() {
 		$adv_cache_path = WP_CONTENT_DIR . '/advanced-cache.php';
-		if ( file_exists( $adv_cache_path ) ) {
-			$contents = file_get_contents( $adv_cache_path );
+		$filesystem     = rocket_direct_filesystem();
+		if ( $filesystem->exists( $adv_cache_path ) ) {
+			$contents = $filesystem->get_contents( $adv_cache_path );
 			return ! ! strpos( $contents, '$wpr_redis_path' );
 		}
 		return false;
@@ -104,7 +135,7 @@ class WPR_Redis {
 			'wpr_redis_admin',
 			WPR_REDIS_URL . 'assets/js/admin.js',
 			[ 'jquery' ],
-			null,
+			WPR_Redis::meta( 'Version' ),
 			true
 		);
 	}
