@@ -1,0 +1,104 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Rocket Redis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-12 17:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.2"
+
+#. Description of the plugin
+msgid "Addon to WP Rocket that allows storage of cache files in Redis."
+msgstr ""
+
+#: views/admin-settings.php:31
+msgid "Connected"
+msgstr ""
+
+#: includes/class-config.php:242
+msgid "Database"
+msgstr ""
+
+#: views/admin-settings.php:35
+msgid "Disconnected"
+msgstr ""
+
+#: includes/class-config.php:234
+msgid "Host"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/naxvog/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/naxvog/wpr-redis/"
+msgstr ""
+
+#: views/admin-settings.php:20
+msgid "Integrate WPR Redis Caching"
+msgstr ""
+
+#: views/admin-settings.php:45
+msgid "Integrated"
+msgstr ""
+
+#. Author of the plugin
+msgid "naxvog <naxvog@users.noreply.github.com>"
+msgstr ""
+
+#: includes/class-config.php:246
+msgid "Password"
+msgstr ""
+
+#: views/admin-settings.php:49
+msgid "Pending Integration"
+msgstr ""
+
+#: includes/class-config.php:238
+msgid "Port"
+msgstr ""
+
+#: views/admin-settings.php:27
+msgid "Redis Connection Status:"
+msgstr ""
+
+#: views/admin-settings.php:16
+msgid "Remove WPR Redis Caching Integration"
+msgstr ""
+
+#: includes/class-config.php:230
+msgid "Scheme"
+msgstr ""
+
+#: includes/class-config.php:55
+msgid "Settings"
+msgstr ""
+
+#: includes/class-config.php:138
+msgid "Setup your Redis connection"
+msgstr ""
+
+#: views/admin-settings.php:24
+msgid "Status"
+msgstr ""
+
+#. Name of the plugin
+msgid "WP Rocket Redis"
+msgstr ""
+
+#: includes/class-config.php:68
+msgid "WP Rocket Redis Settings"
+msgstr ""
+
+#: includes/class-wpr-redis.php:141
+msgid "WP Rocket Redis:"
+msgstr ""

@@ -61,6 +61,21 @@ class WPR_Redis {
 		);
 		new Config();
 		new Update_Checker();
+		add_action( 'init', [ $this, 'load_textdomain' ] );
+	}
+
+	/**
+	 * Loads the plugin textdomain
+	 *
+	 * @since 1.0.1
+	 * @return void
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain(
+			'wpr-redis',
+			false,
+			basename( WPR_REDIS_PATH ) . '/languages'
+		);
 	}
 
 	/**

@@ -22,5 +22,9 @@ It therefore requires a working Redis server.
 
 == Changelog ==
 
+= 1.0.1 =
+* Allows for the translation of the plugin
+* Added German translations
+
 = 1.0.0 =
 * initial release
