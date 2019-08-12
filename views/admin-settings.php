@@ -1,9 +1,11 @@
 <?php
 
+namespace WPR_Redis;
+
 defined( '\\ABSPATH' ) || exit;
 
-$is_connected = WPR_Redis\Redis::init();
-$is_active    = WPR_Redis\WPR_Redis::is_integrated();
+$is_connected = Redis::init();
+$is_active    = WPR_Redis::is_integrated();
 
 $integrate_action = add_query_arg( 'action', 'integrate' );
 $remove_action    = add_query_arg( 'action', 'remove_integration' );
@@ -12,11 +14,13 @@ $remove_action    = add_query_arg( 'action', 'remove_integration' );
 <div class="wrap">
 	<h1><?php _e( 'WP Rocket Redis Settings', 'wpr-redis' ); ?></h1>
 	<?php if ( $is_connected && $is_active ) : ?>
-		<a href="<?php echo $remove_action; ?>" class="button button-secondary">
+		<a class="button button-secondary"
+			href="<?php echo wp_nonce_url( $remove_action, Config::NONCE ); ?>">
 			<?php _e( 'Remove WPR Redis Caching Integration', 'wpr-redis' ); ?>
 		</a>
 	<?php elseif ( $is_connected ) : ?>
-		<a href="<?php echo $integrate_action; ?>" class="button button-secondary">
+		<a class="button button-secondary"
+			href="<?php echo wp_nonce_url( $integrate_action, Config::NONCE ); ?>">
 			<?php _e( 'Integrate WPR Redis Caching', 'wpr-redis' ); ?>
 		</a>
 	<?php endif; ?>

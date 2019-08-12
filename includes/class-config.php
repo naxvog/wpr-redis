@@ -14,8 +14,19 @@ class Config {
 	 */
 	const PATH = '/wpr-redis-config/config.php';
 
+	/**
+	 * @var string Action nonce
+	 */
+	const NONCE = 'wpr-redis-actions';
+
+	/**
+	 * @var string Config page slug
+	 */
 	const SETTINGS_SLUG = 'wpr-redis';
 
+	/**
+	 * @var string|null Option page hook suffix
+	 */
 	private $options_page = null;
 
 	/**
@@ -192,10 +203,10 @@ class Config {
 	 * @return void
 	 */
 	public function process_actions( $screen ) {
-		// TODO: Add nonce verification
 		if ( false
 			|| $this->options_page !== $screen->id
 			|| ! isset( $_REQUEST['action'] )
+			|| ! check_admin_referer( self::NONCE )
 			|| ! current_user_can( apply_filters( 'wpr_redis_config_capability', 'manage_options' ) )
 		) {
 			return;
@@ -203,17 +214,15 @@ class Config {
 		if ( 'integrate' === $_REQUEST['action'] ) {
 			rocket_generate_advanced_cache_file();
 			rocket_clean_cache_dir();
-			wp_safe_redirect( remove_query_arg( 'action' ) );
-			exit;
 		} elseif ( 'remove_integration' === $_REQUEST['action'] ) {
 			remove_filter(
 				'rocket_advanced_cache_file',
 				[ WPR_Redis::class, 'maybe_alter_adv_cache' ]
 			);
 			rocket_generate_advanced_cache_file();
-			wp_safe_redirect( remove_query_arg( 'action' ) );
-			exit;
 		}
+		wp_safe_redirect( remove_query_arg( 'action' ) );
+		exit;
 	}
 
 	/**
