@@ -63,6 +63,12 @@ class WPR_Redis {
 		new Update_Checker();
 	}
 
+	/**
+	 * Checks wheather the advanced cache integration is set.
+	 *
+	 * @since 1.0.0
+	 * @return bool
+	 */
 	public static function is_integrated() {
 		$adv_cache_path = WP_CONTENT_DIR . '/advanced-cache.php';
 		if ( file_exists( $adv_cache_path ) ) {
@@ -146,7 +152,7 @@ class WPR_Redis {
 	 * Checks if all dependencies are installed
 	 *
 	 * @since 1.0.0
-	 * @return true|string[]
+	 * @return true|string[] Array of errors in case of missing dependencies
 	 */
 	private function check_dependencies() {
 		$errors = [];
@@ -157,14 +163,16 @@ class WPR_Redis {
 	}
 
 	/**
-	 * Checks if the soon to be written WP-Rocket advanced cache file contains
-	 * the standard WP-Rocket buffer class.
+	 * Checks if the soon to be written WP Rocket advanced cache file contains
+	 * the standard WP Rocket buffer class.
 	 *
 	 * @since 1.0.0
 	 * @param string $buffer
 	 * @return string
 	 */
-	public static function maybe_alter_adv_cache( $buffer ) {
+	public static function maybe_alter_adv_cache(
+		$buffer
+	) {
 		if ( ! Redis::is_active() && ! Redis::init() ) {
 			return $buffer;
 		}
@@ -194,7 +202,10 @@ class WPR_Redis {
 	 * @param string[] $matches
 	 * @return string
 	 */
-	protected static function alter_adv_cache_classes( $buffer, $matches ) {
+	protected static function alter_adv_cache_classes(
+		$buffer,
+		$matches
+	) {
 		list( $line, $indent, $key_full, $key ) = $matches;
 
 		$classes = [

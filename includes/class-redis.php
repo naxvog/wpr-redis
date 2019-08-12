@@ -6,11 +6,27 @@ defined( '\\ABSPATH' ) || exit;
 
 class Redis {
 
+	/**
+	 * @var string|null Redis engine to be used
+	 */
 	protected static $engine = null;
+
+	/**
+	 * @var object Instance of the chosen engine
+	 */
 	protected static $client = null;
 
+	/**
+	 * @var bool Indicator if successfull connection
+	 */
 	private static $connected = false;
 
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0.0
+	 * @param string|null (Optional) Configuration path.
+	 */
 	public static function init( $config_path = null ) {
 		self::$engine = class_exists( '\\Redis' ) ? 'pecl' : 'predis';
 
@@ -39,6 +55,12 @@ class Redis {
 		return self::$connected;
 	}
 
+	/**
+	 * Adds the connection exception transient indicating a connection error
+	 *
+	 * @since 1.0.0
+	 * @param Exception $ex
+	 */
 	private static function add_connection_exception_transient(
 		\Exception $ex
 	) {
@@ -52,6 +74,7 @@ class Redis {
 	/**
 	 * Connects to the redis server using the approprate engine
 	 *
+	 * @since 1.0.0
 	 * @param Redis_Connection_Params $cp
 	 * @return void
 	 */
@@ -95,16 +118,36 @@ class Redis {
 		}
 	}
 
+	/**
+	 * Returns the current connection status
+	 *
+	 * @since 1.0.0
+	 * @return bool
+	 */
 	public static function is_active() {
 		return self::$connected;
 	}
 
+	/**
+	 * Retrieves the modification time of an entry
+	 *
+	 * @since 1.0.0
+	 * @param string $key
+	 * @return string|bool
+	 */
 	public static function mtime(
 		$key
 	) {
 		return self::get( "{$key}-modified" );
 	}
 
+	/**
+	 * Checks if a key exists
+	 *
+	 * @since 1.0.0
+	 * @param string $key
+	 * @return bool
+	 */
 	public static function exists(
 		$key
 	) {
@@ -112,6 +155,14 @@ class Redis {
 		return self::$client->exists( $key );
 	}
 
+	/**
+	 * Adds a key
+	 *
+	 * @since 1.0.0
+	 * @param string $key
+	 * @param string $value
+	 * @return array Result of both the value and the modified time set opperation.
+	 */
 	public static function add(
 		$key,
 		$value
@@ -122,12 +173,28 @@ class Redis {
 		];
 	}
 
+	/**
+	 * Retrieves a key
+	 *
+	 * @since 1.0.0
+	 * @param string $key
+	 * @return string|bool
+	 */
 	public static function get(
 		$key
 	) {
 		return self::$client->get( self::key( $key ) );
 	}
 
+	/**
+	 * Sets a key
+	 *
+	 * @since 1.0.0
+	 * @param string $key
+	 * @param string $value
+	 * @param int $expiry (Optional)
+	 * @return bool
+	 */
 	protected static function set(
 		$key,
 		$value,
@@ -144,6 +211,13 @@ class Redis {
 		}
 	}
 
+	/**
+	 * Builds a key from a base
+	 *
+	 * @since 1.0.0
+	 * @param string $base
+	 * @return string
+	 */
 	protected static function key(
 		$base
 	) {
@@ -160,8 +234,8 @@ class Redis {
 	 * Filter URLs to delete all caching files from a domain.
 	 *
 	 * @since 1.0.0
-	 * @param array     URLs that will be returned.
-	 * @param string    The language code.
+	 * @param array URLs that will be returned.
+	 * @param string The language code.
 	 */
 	public static function clean_domains(
 		$urls,
@@ -189,6 +263,7 @@ class Redis {
 	 *
 	 * @since 1.0.0
 	 * @param array URLs that will be returned.
+	 * @return array
 	 */
 	public static function clean_files(
 		$urls
@@ -225,6 +300,8 @@ class Redis {
 	/**
 	 * Returns a closure ready to be called to flush selectively.
 	 *
+	 * @since 1.0.0
+	 * @param string $key
 	 * @return callable
 	 */
 	protected static function lua_flush_closure(

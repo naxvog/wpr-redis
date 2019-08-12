@@ -9,6 +9,9 @@ use \WPR_Redis\Redis;
 defined( '\\ABSPATH' ) || exit;
 
 class Redis_Cache extends Cache {
+	/**
+	 * @var string Caching method name
+	 */
 	protected $process_id = 'redis caching process';
 
 	/**

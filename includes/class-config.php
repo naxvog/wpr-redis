@@ -9,16 +9,30 @@ namespace WPR_Redis;
 defined( '\\ABSPATH' ) || exit;
 
 class Config {
+	/**
+	 * @var string Configuration path
+	 */
 	const PATH = '/wpr-redis-config/config.php';
 
 	const SETTINGS_SLUG = 'wpr-redis';
 
 	private $options_page = null;
 
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu' ] );
 	}
 
+	/**
+	 * Returns the settings page url
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	public static function url() {
 		$url = add_query_arg(
 			[
@@ -29,6 +43,13 @@ class Config {
 		return $url;
 	}
 
+	/**
+	 * Adds a plugin action link to the settings page
+	 *
+	 * @since 1.0.0
+	 * @param string[]
+	 * @return string[]
+	 */
 	public function add_settings_link( $links ) {
 		$url  = self::url();
 		$link = "<a href=\"{$url}\">" . __( 'Settings', 'wpr-redis' ) . '</a>';
@@ -36,6 +57,12 @@ class Config {
 		return $links;
 	}
 
+	/**
+	 * Adds the options page to the menu and registers all necessary hooks
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function add_menu() {
 		$this->options_page = add_options_page(
 			__( 'WP Rocket Redis Settings', 'wpr-redis' ),
@@ -56,6 +83,12 @@ class Config {
 		}
 	}
 
+	/**
+	 * Enqueues all necessary resources
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function enqueue_resources() {
 		$handle       = 'wpr-redis-admin-style';
 		$partial_path = '/assets/css/admin.css';
@@ -69,6 +102,12 @@ class Config {
 		wp_enqueue_style( $handle );
 	}
 
+	/**
+	 * Adds all setting fields
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function settings_fields() {
 		$section = 'wpr_redis';
 		add_settings_section(
@@ -89,10 +128,23 @@ class Config {
 		}
 	}
 
+	/**
+	 * Description for the connection parameters section
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function settings_section() {
 		_e( 'Setup your Redis connection', 'wpr-redis' );
 	}
 
+	/**
+	 * Renders a settings field
+	 *
+	 * @since 1.0.0
+	 * @param array $setting
+	 * @return void
+	 */
 	public function settings_field( $setting ) {
 		$constant = strtoupper( "WPR_{$setting['name']}" );
 		$extra    = '';
@@ -117,6 +169,13 @@ class Config {
 		<?php
 	}
 
+	/**
+	 * Renders the page template
+	 *
+	 * @since 1.0.0
+	 * @param bool $echo
+	 * @return mixed
+	 */
 	public function page_template( $echo = true ) {
 		$path = WPR_REDIS_VIEW_PATH . '/admin-settings.php';
 		if ( false === $echo ) {
@@ -127,7 +186,15 @@ class Config {
 		return require $path;
 	}
 
+	/**
+	 * Processes settings actions
+	 *
+	 * @since 1.0.0
+	 * @param WP_Screen $screen
+	 * @return void
+	 */
 	public function process_actions( $screen ) {
+		// TODO: Add nonce verification
 		if ( false
 			|| $this->options_page !== $screen->id
 			|| ! isset( $_REQUEST['action'] )
@@ -151,6 +218,12 @@ class Config {
 		}
 	}
 
+	/**
+	 * Returns all defined settings
+	 *
+	 * @since 1.0.0
+	 * @return array
+	 */
 	public static function settings() {
 		$settings = [
 			'wpr_redis_scheme' => [
@@ -177,6 +250,12 @@ class Config {
 		return $settings;
 	}
 
+	/**
+	 * Registers all settings fields
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function register_settings() {
 		$group = 'wpr_redis';
 		foreach ( self::settings() as $name => $args ) {
@@ -194,8 +273,13 @@ class Config {
 		}
 	}
 
+	/**
+	 * Triggers a config save on shutdown if a setting was modified
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function trigger_save() {
-		var_dump( 'trigger' );
 		static $once = false;
 		if ( ! $once ) {
 			$once = true;
@@ -203,10 +287,23 @@ class Config {
 		}
 	}
 
+	/**
+	 * Returns the full config file path
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	public static function path() {
 		return WP_CONTENT_DIR . self::PATH;
 	}
 
+	/**
+	 * Retrieves the config path
+	 *
+	 * @since 1.0.0
+	 * @param string|null $path (Optional) Configuration path.
+	 * @return mixed|null
+	 */
 	public static function get( $path = null ) {
 		$path = $path ?? self::path();
 		if ( is_readable( $path ) ) {
@@ -215,8 +312,12 @@ class Config {
 		return null;
 	}
 
+	/**
+	 * Saves the configuration to its own file using the config template
+	 *
+	 * @since 1.0.0
+	 */
 	public static function save() {
-		var_dump( __LINE__, __METHOD__ );
 		$keys = array_keys( self::settings() );
 		$repl = [];
 		foreach ( $keys as $key ) {
@@ -233,10 +334,5 @@ class Config {
 		fclose( $fh );
 
 		rocket_generate_advanced_cache_file();
-	}
-
-	private static function contents() {
-		$path = WPR_REDIS_INCLUDE_PATH . '/config-template.php';
-		return file_get_contents( $path );
 	}
 } // Config

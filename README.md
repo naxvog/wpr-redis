@@ -1,9 +1,10 @@
 # WPR-Redis
 This plugin enables WP Rocket to store its generated cache files in the Redis database instead of the default filesystem storage.
 
-## Dependencies ##
+## Requirements ##
 * WP Rocket WordPress Plugin
 * Redis Server
+* PHP 7+
 
 ## Constant configuration ##
 You may use the following constants to configure the plugin. All constants will take preference over the defined settings if there are any.

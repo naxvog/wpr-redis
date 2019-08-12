@@ -10,7 +10,7 @@ $remove_action    = add_query_arg( 'action', 'remove_integration' );
 
 ?>
 <div class="wrap">
-	<h1><?php _e( 'WP-Rocket Redis Settings', 'wpr-redis' ); ?></h1>
+	<h1><?php _e( 'WP Rocket Redis Settings', 'wpr-redis' ); ?></h1>
 	<?php if ( $is_connected && $is_active ) : ?>
 		<a href="<?php echo $remove_action; ?>" class="button button-secondary">
 			<?php _e( 'Remove WPR Redis Caching Integration', 'wpr-redis' ); ?>
