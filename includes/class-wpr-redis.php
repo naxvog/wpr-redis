@@ -34,8 +34,8 @@ class WPR_Redis {
 	 * @return string
 	 */
 	public static function meta( $key ) {
-		static $metadata = null;
-		if ( null === $metadata ) {
+		static $metadata;
+		if ( ! isset( $metadata ) ) {
 			$metadata = get_file_data(
 				WPR_REDIS_FILE,
 				array(

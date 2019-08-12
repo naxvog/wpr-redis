@@ -1,12 +1,21 @@
+input[type="number"] {
+	text-align: right;
+}
 .pill {
-	border-radius: 5px;
-	background-color: #000;
-	padding: 2px 3px;
-	color: #fff;
+	display: inline-block;
+	padding: .25em .4em;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25rem;
 }
 .pill.pill-active {
-	background-color: darkgreen;
+	color: #fff;
+	background-color: #28a745;
 }
 .pill.pill-inactive {
-	background-color: darkred;
+	color: #fff;
+	background-color: #dc3545;
 }

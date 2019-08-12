@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author naxvog <naxvog@users.noreply.github.com>
+ * @version 1.0.0
+ */
 
 namespace WPR_Redis;
 
@@ -336,6 +340,7 @@ LUA;
 	/**
 	 * Retrieved set WP Rocket expiry time
 	 *
+	 * @since 1.0.0
 	 * @return int
 	 */
 	protected static function expiry_time() {

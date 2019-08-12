@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Rocket Redis\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 17:26+0000\n"
+"POT-Creation-Date: 2019-08-12 22:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: naxvog <naxvog@users.noreply.github.com>\n"
 "Language-Team: \n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
@@ -15,90 +15,94 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.0; wp-5.2.2"
 
-#. Description of the plugin
-msgid "Addon to WP Rocket that allows storage of cache files in Redis."
+#: views/admin-settings.php:19 includes/class-config.php:79
+msgid "WP Rocket Redis Settings"
 msgstr ""
 
-#: views/admin-settings.php:31
-msgid "Connected"
-msgstr ""
-
-#: includes/class-config.php:242
-msgid "Database"
-msgstr ""
-
-#: views/admin-settings.php:35
-msgid "Disconnected"
-msgstr ""
-
-#: includes/class-config.php:234
-msgid "Host"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://github.com/naxvog/"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://github.com/naxvog/wpr-redis/"
-msgstr ""
-
-#: views/admin-settings.php:20
-msgid "Integrate WPR Redis Caching"
-msgstr ""
-
-#: views/admin-settings.php:45
-msgid "Integrated"
-msgstr ""
-
-#. Author of the plugin
-msgid "naxvog <naxvog@users.noreply.github.com>"
-msgstr ""
-
-#: includes/class-config.php:246
-msgid "Password"
-msgstr ""
-
-#: views/admin-settings.php:49
-msgid "Pending Integration"
-msgstr ""
-
-#: includes/class-config.php:238
-msgid "Port"
-msgstr ""
-
-#: views/admin-settings.php:27
-msgid "Redis Connection Status:"
-msgstr ""
-
-#: views/admin-settings.php:16
+#: views/admin-settings.php:23
 msgid "Remove WPR Redis Caching Integration"
 msgstr ""
 
-#: includes/class-config.php:230
-msgid "Scheme"
+#: views/admin-settings.php:28
+msgid "Integrate WPR Redis Caching"
 msgstr ""
 
-#: includes/class-config.php:55
+#: views/admin-settings.php:32
+msgid "Status"
+msgstr ""
+
+#: views/admin-settings.php:35
+msgid "Redis Connection Status:"
+msgstr ""
+
+#: views/admin-settings.php:39
+msgid "Connected"
+msgstr ""
+
+#: views/admin-settings.php:43
+msgid "Disconnected"
+msgstr ""
+
+#: views/admin-settings.php:53
+msgid "Integrated"
+msgstr ""
+
+#: views/admin-settings.php:57
+msgid "Pending Integration"
+msgstr ""
+
+#: includes/class-update-checker.php:44
+msgid "Check for updates"
+msgstr ""
+
+#: includes/class-wpr-redis.php:187
+msgid "WP Rocket Redis:"
+msgstr ""
+
+#: includes/class-config.php:66
 msgid "Settings"
 msgstr ""
 
-#: includes/class-config.php:138
+#: includes/class-config.php:147
 msgid "Setup your Redis connection"
 msgstr ""
 
-#: views/admin-settings.php:24
-msgid "Status"
+#: includes/class-config.php:237
+msgid "Scheme"
+msgstr ""
+
+#: includes/class-config.php:241
+msgid "Host"
+msgstr ""
+
+#: includes/class-config.php:245
+msgid "Port"
+msgstr ""
+
+#: includes/class-config.php:249
+msgid "Database"
+msgstr ""
+
+#: includes/class-config.php:253
+msgid "Password"
 msgstr ""
 
 #. Name of the plugin
 msgid "WP Rocket Redis"
 msgstr ""
 
-#: includes/class-config.php:68
-msgid "WP Rocket Redis Settings"
+#. Description of the plugin
+msgid "Addon to WP Rocket that allows storage of cache files in Redis."
 msgstr ""
 
-#: includes/class-wpr-redis.php:141
-msgid "WP Rocket Redis:"
+#. URI of the plugin
+msgid "https://github.com/naxvog/wpr-redis/"
+msgstr ""
+
+#. Author of the plugin
+msgid "naxvog <naxvog@users.noreply.github.com>"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/naxvog/"
 msgstr ""

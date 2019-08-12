@@ -287,8 +287,8 @@ class Config {
 	 * @return void
 	 */
 	public function trigger_save() {
-		static $once = false;
-		if ( ! $once ) {
+		static $once;
+		if ( ! isset( $once ) ) {
 			$once = true;
 			add_action( 'shutdown', [ Config::class, 'save' ] );
 		}

@@ -35,8 +35,8 @@ $loader->add_namespace( 'WPR_Redis', WPR_REDIS_INCLUDE_PATH );
 $loader->add_namespace( 'WP_Rocket', WPR_REDIS_OVERRIDE_PATH . '/wp-rocket' );
 
 function wpr_redis() {
-	static $instance = null;
-	if ( null === $instance ) {
+	static $instance;
+	if ( ! isset( $instance ) ) {
 		$instance = new WPR_Redis\WPR_Redis();
 	}
 	return $instance;
