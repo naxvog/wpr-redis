@@ -3,7 +3,7 @@
  * Plugin Name: WP Rocket Redis
  * Plugin URI: https://github.com/naxvog/wpr-redis/
  * Description: Addon to WP Rocket that allows storage of cache files in Redis.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: naxvog <naxvog@users.noreply.github.com>
  * Author URI: https://github.com/naxvog/
  * Text Domain: wpr-redis
@@ -34,12 +34,20 @@ $loader->register();
 $loader->add_namespace( 'WPR_Redis', WPR_REDIS_INCLUDE_PATH );
 $loader->add_namespace( 'WP_Rocket', WPR_REDIS_OVERRIDE_PATH . '/wp-rocket' );
 
-function wpr_redis() {
-	static $instance;
-	if ( ! isset( $instance ) ) {
-		$instance = new WPR_Redis\WPR_Redis();
+if ( ! function_exists( 'wpr_redis' ) ) :
+	/**
+	 * Instance function to initialize and/or retrieve the plugin instance.
+	 * 
+	 * @since 1.0.0
+	 * @return \WPR_Redis\WPR_Redis
+	 */
+	function wpr_redis() {
+		static $instance;
+		if ( ! isset( $instance ) ) {
+			$instance = new WPR_Redis\WPR_Redis();
+		}
+		return $instance;
 	}
-	return $instance;
-}
+endif;
 
 wpr_redis();

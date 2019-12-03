@@ -62,7 +62,9 @@ function filemtime( $filename ) {
  */
 function readfile( $filename, $use_include_path = false, $context = null ) {
 	if ( Redis::is_active() ) {
-		return Redis::get( $filename );
+		$content = Redis::get( $filename );
+		echo $content;
+		return strlen( $content ) ?: false;
 	}
 	return \readfile( $filename, $use_include_path, $context );
 }
@@ -77,7 +79,9 @@ function readfile( $filename, $use_include_path = false, $context = null ) {
  */
 function readgzfile( $filename, $use_include_path = 0 ) {
 	if ( Redis::is_active() ) {
-		return Redis::get( $filename );
+		$content = Redis::get( $filename );
+		echo gzdecode( $content );
+		return strlen( $content ) ?: false;
 	}
 	return \readgzfile( $filename, $use_include_path );
 }

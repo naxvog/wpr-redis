@@ -3,7 +3,7 @@
 Tags: redis, cache, wp-rocket
 Tested up to: 5.2
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,10 @@ It therefore requires a working Redis server.
 1. Use the Settings -> WPR Redis screen to configure the plugin
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed the cache retrieval override functions
+* Fixed the expiry time method of the redis class as WP Rocket changed its API
 
 = 1.0.1 =
 * Allows for the translation of the plugin

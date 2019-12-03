@@ -173,7 +173,7 @@ class Redis {
 	) {
 		return [
 			self::set( $key, $value, self::expiry_time() ),
-			self::set( $key . '-modified', time(), self::expiry_time() ),
+			self::set( "{$key}-modified", time(), self::expiry_time() ),
 		];
 	}
 
@@ -338,15 +338,18 @@ LUA;
 	}
 
 	/**
-	 * Retrieved set WP Rocket expiry time
+	 * Retrieves set WP Rocket expiry time in hours
 	 *
 	 * @since 1.0.0
-	 * @return int
+	 * @return int Expiry in hours
 	 */
 	protected static function expiry_time() {
 		static $expiry;
 		if ( ! isset( $expiry ) ) {
-			$expiry = get_rocket_purge_cron_interval();
+			$hours = function_exists( 'get_rocket_option' )
+				? get_rocket_option( 'purge_cron_interval' )
+				: 10;
+			$expiry = $hours * HOUR_IN_SECONDS;
 		}
 		return $expiry;
 	}
