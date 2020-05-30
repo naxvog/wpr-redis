@@ -2,7 +2,7 @@
 This plugin enables WP Rocket to store its generated cache files in the Redis database instead of the default filesystem storage.
 
 ## Requirements ##
-* WP Rocket WordPress Plugin
+* WP Rocket WordPress Plugin (tested up to v3.5.5.1)
 * Redis Server
 * PHP 7+
 
@@ -22,5 +22,3 @@ You may use the following constants to configure the plugin. All constants will 
 
 ## Disclaimer ##
 This plugin uses WP Rocket's namespacing to alter its file modification functions as well as WP Rockets `advanced-cache.php` file content filter to register itself. Any API changes from the side of WP Rocket might break this plugin's functionality so please report any issues you might have in the Github issue tracker.
-
-PS: Please don't use the WP Rocket Trello board to report issues and ask questions regarding this plugin.
