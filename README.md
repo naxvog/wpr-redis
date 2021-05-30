@@ -18,7 +18,7 @@ You may use the following constants to configure the plugin. All constants will 
 
 ## Known Issues ##
 * Connection to any kind of Redis cluster is currently not supported
-* If you are using nginx and if you can alter its configuration the [Rocket-Nginx](https://github.com/SatelliteWP/rocket-nginx) seems to be faster than this (tested using a NVME SSD equipped server)
+* If you are using nginx and if you can alter its configuration the [Rocket-Nginx](https://github.com/SatelliteWP/rocket-nginx) configuration seems to be faster than this (tested using a NVME SSD equipped server)
 
 ## Disclaimer ##
-This plugin uses WP Rocket's namespacing to alter its file modification functions as well as WP Rockets `advanced-cache.php` file content filter to register itself. Any API changes from the side of WP Rocket might break this plugin's functionality so please report any issues you might have in the Github issue tracker.
+This plugin uses WP Rocket's namespacing to alter its file modification functions as well as WP Rockets `advanced-cache.php` file content filter to register itself. Any API changes from the side of WP Rocket might break this plugin's functionality so please report any issues you might have in the GitHub issue tracker.
